@@ -1,21 +1,16 @@
-//assignment1
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { View, StyleSheet, StatusBar } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
+import StartingScreen from './components/screens/StartingScreen';
+import ConfirmScreen from './components/screens/ConfirmScreen';
+import FinishScreen from './components/screens/FinishScreen';
+import colors from './helpers/colors';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+const App = () => {
+  const [email, setEmail] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [screenState, setScreenState] = useState('starting');
+  const [isConfirmed, setIsConfirmed] = useState(false);
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
