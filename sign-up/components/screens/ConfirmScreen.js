@@ -1,4 +1,3 @@
-// screens/ConfirmScreen.js
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import Card from '../Card';
