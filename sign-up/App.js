@@ -11,6 +11,45 @@ const App = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [screenState, setScreenState] = useState('starting');
   const [isConfirmed, setIsConfirmed] = useState(false);
-}
 
-export default App;
+  const handleSignUp = (email, phoneNumber) => {
+    setEmail(email);
+    setPhoneNumber(phoneNumber);
+    setScreenState('confirm');
+  };
+
+  const handleReset = () => {
+    setEmail('');
+    setPhoneNumber('');
+  };
+
+  const handleConfirm = () => {
+    setIsConfirmed(true);
+    setScreenState('finish');
+  };
+
+  const handleEdit = () => {
+    setScreenState('starting');
+  };
+
+  const handleFinish = () => {
+    setIsConfirmed(false);
+    setScreenState('finish');
+  };
+
+  const handleStartAgain = () => {
+    setEmail('');
+    setPhoneNumber('');
+    setScreenState('starting');
+  };
+};
+
+const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      justifyContent: 'center',
+      paddingHorizontal: 10,
+    },
+  });
+  
+  export default App;
