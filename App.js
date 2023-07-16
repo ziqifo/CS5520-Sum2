@@ -102,7 +102,6 @@ const styles = StyleSheet.create({
     fontSize: 30,
   },
   textContainer: {
-    //flex: 1,
     borderRadius: 5,
     backgroundColor: 'white',
     margin: 5,
