@@ -42,14 +42,39 @@ const App = () => {
     setPhoneNumber('');
     setScreenState('starting');
   };
+
+  return (
+    <LinearGradient colors={[colors.primary, colors.secondary]} style={styles.container}>
+      <StatusBar barStyle="light-content" />
+      {screenState === 'starting' && (
+        <StartingScreen onSignUp={handleSignUp} onReset={handleReset} />
+      )}
+      {screenState === 'confirm' && (
+        <ConfirmScreen
+          email={email}
+          phoneNumber={phoneNumber}
+          onConfirm={handleConfirm}
+          onEdit={handleEdit}
+          onFinish={handleFinish}
+        />
+      )}
+      {screenState === 'finish' && (
+        <FinishScreen
+          isConfirmed={isConfirmed}
+          phoneNumber={phoneNumber}
+          onStartAgain={handleStartAgain}
+        />
+      )}
+    </LinearGradient>
+  );
 };
 
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      justifyContent: 'center',
-      paddingHorizontal: 10,
-    },
-  });
-  
-  export default App;
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    paddingHorizontal: 10,
+  },
+});
+
+export default App;
