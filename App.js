@@ -11,6 +11,8 @@ import {
 import Header from "./components/Header";
 import { useState } from "react";
 import Input from "./components/Input";
+import GoalItem from "./components/GoalItem";
+import PressableButton from "./components/PressableButton";
 
 export default function App() {
   const [modalVisible, setModalVisible] = useState(false);
@@ -28,17 +30,30 @@ export default function App() {
     });
     hideModal();
   }
-
+  function goalPressed(pressedId) {
+    console.log("goal pressed ", pressedId);
+  }
+  function goalDeleted(deletedId) {
+    setGoals((prevGoals) => {
+      return prevGoals.filter((goalItem) => {
+        return goalItem.id !== deletedId;
+      });
+    });
+  }
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.topContainer}>
         <Header name={appName} />
-        <Button
-          title="Add A Goal"
-          onPress={() => {
+        <PressableButton
+          pressableFunction={() => {
             setModalVisible(true);
           }}
-        />
+          defaultStyle={styles.addButtonDefault}
+          pressedStyle={styles.addButtonPressed}
+        >
+          <Text style={{ color: "white" }}>Add A Goal</Text>
+        </PressableButton>
+
       </View>
       <Input
         changeTextCallBack={handleChangeText}
@@ -51,10 +66,11 @@ export default function App() {
           data={goals}
           renderItem={({ item }) => {
             return (
-              <View style={styles.textContainer}>
-                <Text style={styles.text}>{item.text}</Text>
-                <Button color="black" title="X"/>
-              </View>
+              <GoalItem
+                goalData={item}
+                deleteFunction={goalDeleted}
+                pressFunction={goalPressed}
+              />
             );
           }}
         />
@@ -107,5 +123,13 @@ const styles = StyleSheet.create({
     margin: 5,
     flexDirection: "row",
     alignItems:"center",
+  },
+  addButtonDefault: {
+    backgroundColor: "green",
+    padding: 5,
+    borderRadius: 5,
+  },
+  addButtonPressed: {
+    opacity: 0.5,
   },
 });
